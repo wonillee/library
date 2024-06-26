@@ -1,0 +1,27 @@
+server:
+  port: 8081
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://${POSTGRES_SERVER}/${POSTGRES_DATABASE}
+    username: postgres
+    password: postgres
+    properties:
+      lock_timeout: 40000
+      statement_timeout: 40000
+      idle_in_transaction_session_timeout: 40000
+      connectionTimeout: PT55S
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    topic:
+      catalog-bookinstanceadded: catalog-bookinstanceadded
+management:
+  endpoints:
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      consume: b3
+      produce: b3_multi
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_ENDPOINT}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package io.chrislee.library.catalog.v1;
+
+enum BookType {
+  BOOK_TYPE_UNSPECIFIED = 0;
+  BOOK_TYPE_RESTRICTED = 1;
+  BOOK_TYPE_CIRCULATING = 2;
+}
+
+message BookInstanceAddedToCatalogue {
+  string event_id = 1;
+  uint64 instant = 2;
+  string isbn = 3;
+  string book_id = 4;
+  BookType book_type = 5;
+}
